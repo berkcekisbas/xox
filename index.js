@@ -11,7 +11,7 @@ app.use(express.static('src/assets'));
 /**
  * 80 portunda çalış
  */
-server.listen(8001);
+server.listen(80);
 
 /**
  * Ana route çağrıldığında /src/index.html dosyasını gönder
