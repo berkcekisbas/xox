@@ -1,7 +1,7 @@
 /**
  * Socket bağlantısı
  */
-var socket = io.connect('http://localhost:8001');
+var socket = io.connect('http://104.248.136.110');
 
 /**
  *  2 oyuncu 0 = X, 1 = O
