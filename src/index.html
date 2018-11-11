@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XoX</title>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            color: #333333;
+        }
+
+        button {
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+        }
+
+        .intel-container {
+            display: flex;
+            background-color: #1a8cff;
+            border-radius: 7px;
+        }
+
+        .seg-control {
+            height: 40px;
+            width: 100px;
+            max-width: 33%;
+            font-size: 1.3em;
+            border: none;
+            background-color: white;
+            color: #1a8cff;
+        }
+
+        .xo {
+            height: 80px;
+            width: 80px;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 40px;
+            border: none;
+            background-color: white;
+            color: #1a8cff;
+            text-align: center;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        .xo:hover {
+            background-color: #1a8cff;
+            color: white;
+        }
+
+        .disabled {
+            cursor: default !important;
+            color: #ccc !important;
+        }
+        .disabled:hover {
+            background-color: white !important;
+            color: #ccc !important;
+        }
+
+        #l1 {
+            border-radius: 6px 0 0 6px;
+            margin: 1px;
+        }
+
+        #l2 {
+            margin: 1px 1px 1px 0px;
+        }
+
+        #l3 {
+            border-radius: 0 6px 6px 0;
+            margin: 1px 1px 1px 0px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        .board {
+            display: flex;
+            flex-flow: row wrap;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .cell {
+            width: 33.333%;
+            height: 33.333%;
+            margin: auto;
+            font-size: 60px;
+            font-family: 'Permanent Marker', cursive;
+            background-color: white;
+            color: #333333;
+
+        }
+
+        [id='0'] {
+            border: solid;
+            border-color: white #333333 #333333 white;
+        }
+
+        [id='1'] {
+            border: solid;
+            border-color: white #333333 #333333 #333333;
+        }
+
+        [id='2'] {
+            border: solid;
+            border-color: white white #333333 #333333;
+        }
+
+        [id='3'] {
+            border: solid;
+            border-color: #333333 #333333 #333333 white;
+        }
+
+        [id='4'] {
+            border: solid;
+            border-color: #333333;
+        }
+
+        [id='5'] {
+            border: solid;
+            border-color: #333333 white #333333 #333333;
+        }
+
+        [id='6'] {
+            border: solid;
+            border-color: #333333 #333333 white white;
+        }
+
+        [id='7'] {
+            border: solid;
+            border-color: #333333 #333333 white #333333;
+        }
+
+        [id='8'] {
+            border: solid;
+            border-color: #333333 white white #333333;
+        }
+
+        #game-over {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background-color: gray;
+            opacity: .8;
+            left: 0px;
+            top: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #message {
+            font-size: 60px;
+            color: white;
+            font-weight: bold;
+        }
+        .blue {
+            color: #1a8cff;
+        }
+        .display-none {
+            display: none;
+        }
+        .pointer {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 id="status"></h2>
+    <h3 class="blue" id="typeStatus" class="display-none"></h3>
+    <div id="chooseMark" class="container">
+        <h2>İşaretini seç :</h2>
+        <div class="intel-cont">
+            <button id="l1" class="xo x" data-type="0">X</button>
+            <button id="l3" class="xo o" data-type="1">O</button>
+        </div>
+    </div>
+    <div id="board" class="display-none">
+        <div class="board">
+            <div id="0" class="cell"></div>
+            <div id="1" class="cell"></div>
+            <div id="2" class="cell"></div>
+            <div id="3" class="cell"></div>
+            <div id="4" class="cell"></div>
+            <div id="5" class="cell"></div>
+            <div id="6" class="cell"></div>
+            <div id="7" class="cell"></div>
+            <div id="8" class="cell"></div>
+        </div>
+    </div>
+    <div id="game-over">
+        <div id="message"></div>
+        <h1 class="blue pointer" id="newGame">Yeni oyun</h1>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
